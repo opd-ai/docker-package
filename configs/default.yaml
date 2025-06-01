@@ -1,0 +1,20 @@
+default:
+  version: '3.8'
+  services:
+    app:
+      image: myapp:latest
+      build:
+        context: .
+        dockerfile: Dockerfile
+      ports:
+        - "8080:8080"
+      environment:
+        - ENV=production
+      volumes:
+        - ./data:/data
+      networks:
+        - app-network
+
+  networks:
+    app-network:
+      driver: bridge

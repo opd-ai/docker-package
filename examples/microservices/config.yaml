@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  service1:
+    image: service1-image
+    build:
+      context: .
+      dockerfile: Dockerfile.service1
+    ports:
+      - "8081:8081"
+    networks:
+      - microservices-network
+
+  service2:
+    image: service2-image
+    build:
+      context: .
+      dockerfile: Dockerfile.service2
+    ports:
+      - "8082:8082"
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+    driver: bridge

@@ -1,0 +1,24 @@
+host: examples/simple-web/config.yaml
+version: '3.8'
+
+services:
+  web:
+    image: simple-web:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      - ENV=production
+    volumes:
+      - ./data:/data
+    networks:
+      - webnet
+
+networks:
+  webnet:
+    driver: bridge
+
+volumes:
+  data: {}

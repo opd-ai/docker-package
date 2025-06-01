@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  web:
+    image: example/microservice-web:latest
+    ports:
+      - "8080:80"
+    networks:
+      - microservices-network
+
+  api:
+    image: example/microservice-api:latest
+    ports:
+      - "8081:80"
+    networks:
+      - microservices-network
+
+  db:
+    image: example/microservice-db:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: example_db
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+    driver: bridge

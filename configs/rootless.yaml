@@ -1,0 +1,21 @@
+rootless:
+  enabled: true
+  userns: true
+  uid: 1000
+  gid: 1000
+  runtime: "containerd"
+  storage:
+    driver: "overlay2"
+    root: "/var/lib/docker"
+  network:
+    bridge: "docker0"
+    subnet: "172.18.0.0/16"
+    gateway: "172.18.0.1"
+  permissions:
+    allow: 
+      - "read"
+      - "write"
+      - "execute"
+    deny: 
+      - "setuid"
+      - "setgid"
